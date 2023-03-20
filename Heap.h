@@ -13,7 +13,7 @@ using namespace std;
 
 class Heap {
 public:
-    Heap(int n, int m=1);
+    Heap(int n, int m = 1);
 
     Heap(int *keys, int n, int p) {
         m = p;
@@ -58,70 +58,15 @@ public:
         clear();
     }
 
-    bool is_empty(){
-        if(size==0)return true;
+    bool is_empty() {
+        if (size == 0)return true;
         return false;
     }
 
-    Heap &delete1(int &steps) {
-        storage[0] = storage[--size];
-        int f = 1, tmp, tek, tmp2 = 0, tmp3 = 0;
-        int min = get();
-        steps++;
-        while (true) {
-            //print_storage();
-            for (int i = tmp2 + 1; i <= tmp2 + m; i++) {
-                if (i > size)return *this;
-                if (storage[i] < min) {
-                    steps++;
-                    min = storage[i];
-                    tmp = i;
-                    f = 0;
-                }
-            }
-            if (f)break;
-            if (tmp2 > size)break;
-            tek = storage[tmp];
-            storage[tmp] = storage[tmp3];
-            storage[tmp3] = tek;
-            min = storage[tmp];
-            tmp2 = tmp * m;
-            tmp3 = tmp;
-            f = 1;
-            if (tmp2 > size)break;
-        }
-        return *this;
-    }
 
-    Heap &delete2(int &steps,int poz) {
-        storage[poz] = storage[--size];
-        int f = 1, tmp, tek, tmp2 = 0, tmp3 = 0;
-        int min = get();
-        steps++;
-        while (true) {
-            //print_storage();
-            for (int i = tmp2 + 1; i <= tmp2 + m; i++) {
-                if (i > size)return *this;
-                if (storage[i] < min) {
-                    steps++;
-                    min = storage[i];
-                    tmp = i;
-                    f = 0;
-                }
-            }
-            if (f)break;
-            if (tmp2 > size)break;
-            tek = storage[tmp];
-            storage[tmp] = storage[tmp3];
-            storage[tmp3] = tek;
-            min = storage[tmp];
-            tmp2 = tmp * m;
-            tmp3 = tmp;
-            f = 1;
-            if (tmp2 > size)break;
-        }
-        return *this;
-    }
+    Heap &delete1(int &steps);
+
+    Heap &delete2(int &steps, int poz);
 
     int getCapacity() const { return capacity; }
 
@@ -145,79 +90,7 @@ public:
 
     int deleteKey();
 
-    Heap &union1(Heap &h, Heap &h1, int &steps) {
-        int br1 = 0, br2 = 0, f1 = 1, f2 = 0, f3 = 1, f4 = 1, br3 = 0;
-        if (m != h.getM())return *this;
-        /*print_storage();
-        cout << endl;
-        h.print_storage();
-        cout << endl;*/
-        if (h.get() >= get()) {
-
-            while (br1 < size || br2 < h.size) {
-                for (int i = 0; i < pow(m, f1); i++) {
-                    if (br1 >= size)break;
-                    h1.storage[br3++] = storage[br1++];
-                    h1.size++;
-                    /*h1.print_storage();
-                    cout << endl;*/
-
-                    if (f3) {
-                        f3 = 0;
-                        f1--;
-                        break;
-                    }
-                }
-                f1++;
-                for (int i = 0; i < pow(m, f2); ++i) {
-                    if (br2 >= h.size || f2 == 0)break;
-                    h1.storage[br3++] = h.storage[br2++];
-                    h1.size++;
-                    /*h1.print_storage();
-                    cout << endl;*/
-                    if (f4) {
-                        f4 = 0;
-                        f2--;
-                        break;
-                    }
-                }
-                f2++;
-            }
-        } else {
-            while (br1 < h.size || br2 < size) {
-                for (int i = 0; i < pow(m, f1); i++) {
-                    if (br1 >= h.size)break;
-                    h1.storage[br3++] = h.storage[br1++];
-                    h1.size++;
-                    /*h1.print_storage();
-                    cout << endl;*/
-
-                    if (f3) {
-                        f3 = 0;
-                        f1--;
-                        break;
-                    }
-                }
-                f1++;
-                for (int i = 0; i < pow(m, f2); ++i) {
-                    if (br2 >= size || f2 == 0)break;
-                    h1.storage[br3++] = storage[br2++];
-                    h1.size++;
-                    /*h1.print_storage();
-                    cout << endl;*/
-                    if (f4) {
-                        f4 = 0;
-                        f2--;
-                        break;
-                    }
-                }
-                f2++;
-            }
-        }
-        h1.union2 = 1;
-        //h1.print_storage();
-        return h1;
-    }
+    Heap &union1(Heap &h, Heap &h1, int &steps);
 
     Heap &change_key(int index, int into) {
         cout << *this << endl;

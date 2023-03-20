@@ -19,10 +19,11 @@ int main() {
         switch (k) {
             case 1: {
                 int dat;
-                cout <<  "Velicina hipa" << setw(20) << "Vrm umtnj" << setw(20) << "Br k umtnj" << setw(20) << "Vrm izb" << setw(20)<< "Br k izb\n";
+                cout << "Velicina hipa" << setw(20) << "Vrm umtnj" << setw(20) << "Br k umtnj" << setw(20) << "Vrm izb"
+                     << setw(20) << "Br k izb\n";
                 FILE *file;
 
-                for (int i = 0; i < 5; i++){
+                for (int i = 0; i < 5; i++) {
                     switch (i) {
                         case 0: {
                             file = fopen("test_10.txt", "r");
@@ -33,7 +34,7 @@ int main() {
                                 dat1[br++] = t;
                             } while (br < dat);
                             fclose(file);
-                            for (int m = 2; m <= 8; m+=2) {
+                            for (int m = 2; m <= 8; m += 2) {
                                 cout << dat << "," << m << setw(20);
                                 Heap h(dat, m);
                                 int steps = 0;
@@ -336,7 +337,7 @@ int main() {
                 int index, elem;
                 cin >> index;
                 //h3.change_key(index, elem);
-                h3.delete2(index,steps);
+                h3.delete2(index, steps);
                 cout << h3 << endl;
 
 

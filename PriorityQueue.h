@@ -15,19 +15,24 @@ using namespace std;
 class PriorityQueue {
     Heap heap;
 public:
-    explicit PriorityQueue(int size) : heap(size) { }
+    explicit PriorityQueue(int size) : heap(size) {}
+
     int get() const { return heap.peek(); }
 
     int remove() { return heap.deleteKey(); }
 
-    PriorityQueue &insert(int k) {     heap.insert(k); return *this;   }
+    PriorityQueue &insert(int k) {
+            heap.insert(k);
+        return *this; 
+    }
 
     bool isEmpty() const { return heap.getSize() == 0; }
 
-    bool isFull() const   {  return heap.getCapacity() == heap.getSize(); }
+    bool isFull() const
+
+      { return heap.getCapacity() == heap.getSize(); }
 
 };
-
 
 
 #endif //MAIN_CPP_PRIORITYQUEUE_H
